@@ -1,8 +1,0 @@
-http://www.altavia-group.com,
-http://www.altavia-paris.com,
-http://altavia-group.com,
-http://altavia-paris.com,
-https://www.altavia-group.com,
-https://www.altavia-paris.com,
-https://altavia-group.com,
-https://altavia-paris.com

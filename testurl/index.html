@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+		<title>TEST URL</title>
+		
+		<meta name="viewport" content="width=300, initial-scale=1">
+
+		<style type="text/css">
+			
+			body {
+				font-family: arial;
+				letter-spacing: 1px;
+			}
+			
+			a {
+				text-decoration-color: #a2a2a2;
+			}
+			
+			.message {
+				color: purple;
+				font-weight: bold;
+				margin-top: 20px;
+				margin-bottom: 20px;
+			}
+			
+			#display {
+				line-height: 25px;
+			}
+			
+			.out {
+				color: red;
+				font-weight: bold;
+			}
+			
+			.ok {
+				color: #a2a2a2;
+			}
+			
+			.sepa {
+				background-color: #d1d1d1;
+				height: 2px;
+				width: 100%;
+				margin-top: 10px;
+				margin-bottom: 10px;
+			}
+
+
+		</style>
+
+		<script language="JavaScript">
+			
+			
+//			Affichage du résultat
+			
+			window.onload = function (){
+			
+//				console.log(x);
+				
+				document.getElementById("display").innerHTML="<div class='sepa'><div>";
+				
+				for (var i = 0; i < x.length; i++) {
+				  				  
+				  document.getElementById("display").innerHTML+="<div class='message'>"+url[i][0]+"<div>";
+				  
+				  for (var ii = 0; ii < 4; ii++) {
+				    
+				    if ( x[i][ii][0]==0 ) document.getElementById("display").innerHTML+="<a href='"+x[i][ii][1]+"' target='_blank'><span class='ok'>"+x[i][ii][1]+"</span></a><br>";
+					
+					else document.getElementById("display").innerHTML+="<a href='"+x[i][ii][1]+"' target='_blank'><span class='out'>"+x[i][ii][1]+"</span></a><br>";
+				  }
+				  
+				  document.getElementById("display").innerHTML+="<div class='sepa'><div>"; 
+				}
+
+			}
+			
+			
+			
+			
+			
+//			Liste des URL et de l'image à tester
+			
+			var url = [
+				
+				["altavia-group.com","/wp-content/uploads/2016/02/Altavia_Logo.png"],
+						
+				["altavia-paris.com","/wp-content/uploads/2017/01/Altavia_Logo.png"],
+				
+				["altavia-nantes.com","/wp-content/uploads/2015/12/cropped-Altavia_Grey.png"],
+				
+				["altavia-optitrans.com","/wp-content/uploads/2017/01/Altavia_Logo.png"],
+				
+				["altavia-instore.com","/wp-content/uploads/2019/02/Altavia_In_Store.png"],
+				
+				["altavia-aura.com","/wp-content/uploads/2019/07/ALTAVIA-AURA-COUL-BLACK-01-1.png"],
+
+				["altavia-coach.com","/wp-content/uploads/2016/10/logo_Altavia-Coach-1.png"],
+				
+				["altavia-fibervalue.com","/wp-content/uploads/2019/05/Logo-FV-V3.png"],
+				
+				["altavia-pallas.com","/wp-content/uploads/2017/06/ALTAVIA-PALLAS-copie.png"],
+				
+				["altavia-shoppermind.com","/wp-content/uploads/2017/12/Altavia_ShopperMind_H.png"],
+				
+				["wetail.com","/wp-content/uploads/2017/05/logoWETAIL-BLACK-pour-site-1.png"],
+
+				["altavia.cz","/wp-content/uploads/2015/12/cropped-Altavia_Grey.png"],
+				
+				["altavia-baltics.com","/wp-content/uploads/2017/01/Altavia_Logo.png"],
+				
+				["altavia-deutschland.com","/wp-content/uploads/2015/12/cropped-Altavia_Grey.png"],
+				
+				["altavia.hu","/wp-content/uploads/2015/12/cropped-Altavia_Grey.png"],
+				
+				["altaviaiberica.es","/wp-content/uploads/2015/12/cropped-Altavia_Grey.png"],
+				
+				["altavia.pl","/wp-content/uploads/2017/01/Altavia_Logo.png"],
+				
+				["altavia.ru","/wp-content/uploads/2015/12/cropped-Altavia_Grey.png"],
+				
+				["altaviasumis.nl","/wp-content/uploads/2018/03/ALTAVIASUMIS-LOGO.png"],
+				
+				["altavia.ua","/wp-content/uploads/2015/12/cropped-Altavia_Grey.png"],
+				
+				["altavia-morocco.com","/wp-content/uploads/2015/12/cropped-Altavia_Grey.png"],
+				
+				["altavia-prodity.ca","/wp-content/uploads/2017/01/Altavia_Logo.png"],
+				
+				["altavia.jp","/wp-content/uploads/2020/01/Altavia_Japan_White.png"]
+			];
+			
+			
+//			Déclaration du tableau x
+			
+			var x = new Array(url.length);
+			
+			for (var i = 0; i < x.length; i++) {
+			  x[i] = new Array(4);
+			}
+			
+			
+//			Test sur les 4 possibilitées d'URL
+			
+			for( i=0; i<url.length; i++ ){
+			     
+				 test( "http://",url[i][0],url[i][1],i,0 );
+				 test( "https://",url[i][0],url[i][1],i,1 );
+				 test( "http://www.",url[i][0],url[i][1],i,2 );
+				 test( "https://www.",url[i][0],url[i][1],i,3 );
+			}
+		
+		    
+			
+//			Teste si l'image est accessible ou non
+			
+			function test(a,b,c,i,ii){
+		    
+		    	img=new Image();
+		    	
+		    	img.src=a+b+c;
+	
+				img.onload = function(){  x[i][ii]=[0,a+b];}
+		
+				img.onerror = function(){  x[i][ii]=[1,a+b]; }
+			
+			}
+			
+		
+		
+		</script>
+	
+	</head>
+
+	<body>
+		
+		<div class="message">Afficher la console pour voir les codes erreurs.</div>
+		
+		<div id="display">Test des URL en cours<br><img src="loader.gif"></div>
+
+	</body>
+</html>
