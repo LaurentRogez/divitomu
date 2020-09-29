@@ -1,10 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!doctype html>
 
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-		<title>TEST URL</title>
+		<title>TEST URL - SCRIPT JS DANS WORDPRESS</title>
 		
 		<meta name="viewport" content="width=300, initial-scale=1">
 
@@ -57,13 +57,17 @@
 			
 			window.onload = function (){
 			
-//				console.log(x);
+//				testb();
+			
+				// Voir la structure du tableau x dans la console
+				console.log(x);
 				
+				// HTML
 				document.getElementById("display").innerHTML="<div class='sepa'><div>";
 				
 				for (var i = 0; i < x.length; i++) {
 				  				  
-				  document.getElementById("display").innerHTML+="<div class='message'>"+url[i][0]+"<div>";
+				  document.getElementById("display").innerHTML+="<div class='message'>"+url[i]+"<div>";
 				  
 				  for (var ii = 0; ii < 4; ii++) {
 				    
@@ -78,58 +82,58 @@
 			}
 			
 			
-			
+
 			
 			
 //			Liste des URL et de l'image à tester
 			
 			var url = [
 				
-				["altavia-group.com","/wp-content/uploads/2016/02/Altavia_Logo.png"],
+				"altavia-group.com",
 						
-				["altavia-paris.com","/wp-content/uploads/2017/01/Altavia_Logo.png"],
+				"altavia-paris.com",
 				
-				["altavia-nantes.com","/wp-content/uploads/2015/12/cropped-Altavia_Grey.png"],
+				"altavia-nantes.com",
 				
-				["altavia-optitrans.com","/wp-content/uploads/2017/01/Altavia_Logo.png"],
+				"altavia-optitrans.com",
 				
-				["altavia-instore.com","/wp-content/uploads/2019/02/Altavia_In_Store.png"],
+				"altavia-instore.com",
 				
-				["altavia-aura.com","/wp-content/uploads/2019/07/ALTAVIA-AURA-COUL-BLACK-01-1.png"],
+				"altavia-aura.com",
 
-				["altavia-coach.com","/wp-content/uploads/2016/10/logo_Altavia-Coach-1.png"],
+				"altavia-coach.com",
 				
-				["altavia-fibervalue.com","/wp-content/uploads/2019/05/Logo-FV-V3.png"],
+				"altavia-fibervalue.com",
 				
-				["altavia-pallas.com","/wp-content/uploads/2017/06/ALTAVIA-PALLAS-copie.png"],
+				"altavia-pallas.com",
 				
-				["altavia-shoppermind.com","/wp-content/uploads/2017/12/Altavia_ShopperMind_H.png"],
+				"altavia-shoppermind.com",
 				
-				["wetail.com","/wp-content/uploads/2017/05/logoWETAIL-BLACK-pour-site-1.png"],
+				"wetail.com",
 
-				["altavia.cz","/wp-content/uploads/2015/12/cropped-Altavia_Grey.png"],
+				"altavia.cz",
 				
-				["altavia-baltics.com","/wp-content/uploads/2017/01/Altavia_Logo.png"],
+				"altavia-baltics.com",
 				
-				["altavia-deutschland.com","/wp-content/uploads/2015/12/cropped-Altavia_Grey.png"],
+				"altavia-deutschland.com",
 				
-				["altavia.hu","/wp-content/uploads/2015/12/cropped-Altavia_Grey.png"],
+				"altavia.hu",
 				
-				["altaviaiberica.es","/wp-content/uploads/2015/12/cropped-Altavia_Grey.png"],
+				"altaviaiberica.es",
 				
-				["altavia.pl","/wp-content/uploads/2017/01/Altavia_Logo.png"],
+				"altavia.pl",
 				
-				["altavia.ru","/wp-content/uploads/2015/12/cropped-Altavia_Grey.png"],
+				"altavia.ru",
 				
-				["altaviasumis.nl","/wp-content/uploads/2018/03/ALTAVIASUMIS-LOGO.png"],
+				"altaviasumis.nl",
 				
-				["altavia.ua","/wp-content/uploads/2015/12/cropped-Altavia_Grey.png"],
+				"altavia.ua",
 				
-				["altavia-morocco.com","/wp-content/uploads/2015/12/cropped-Altavia_Grey.png"],
+				"altavia-morocco.com",
 				
-				["altavia-prodity.ca","/wp-content/uploads/2017/01/Altavia_Logo.png"],
+				"altavia-prodity.ca",
 				
-				["altavia.jp","/wp-content/uploads/2020/01/Altavia_Japan_White.png"]
+				"altavia.jp"
 			];
 			
 			
@@ -146,26 +150,27 @@
 			
 			for( i=0; i<url.length; i++ ){
 			     
-				 test( "http://",url[i][0],url[i][1],i,0 );
-				 test( "https://",url[i][0],url[i][1],i,1 );
-				 test( "http://www.",url[i][0],url[i][1],i,2 );
-				 test( "https://www.",url[i][0],url[i][1],i,3 );
+				 test( "http://",url[i],i,0 );
+				 test( "https://",url[i],i,1 );
+				 test( "http://www.",url[i],i,2 );
+				 test( "https://www.",url[i],i,3 );
 			}
 		
 		    
 			
 //			Teste si l'image est accessible ou non
 			
-			function test(a,b,c,i,ii){
-		    
-		    	img=new Image();
-		    	
-		    	img.src=a+b+c;
+			function test(a,b,i,ii){
+				
+				script = document.createElement('script');
+				
+				script.src = a+b+"/wp-includes/js/admin-bar.js";
+				
+				document.head.append(script);
 	
-				img.onload = function(){  x[i][ii]=[0,a+b];}
+				script.onload = function(){  x[i][ii]=[0,a+b];}
 		
-				img.onerror = function(){  x[i][ii]=[1,a+b]; }
-			
+				script.onerror = function(){  x[i][ii]=[1,a+b]; }
 			}
 			
 		
@@ -175,8 +180,15 @@
 	</head>
 
 	<body>
+				
+		<div class="message">
 		
-		<div class="message">Afficher la console pour voir les codes erreurs.</div>
+			Lecture d'un script dans WordPress : "/wp-includes/js/admin-bar.js"
+			<br>
+			<br>
+			Afficher la console pour voir les codes erreurs. (Chromium)
+		
+		</div>
 		
 		<div id="display">Test des URL en cours<br><img src="loader.gif"></div>
 
